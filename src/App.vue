@@ -1,26 +1,49 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div class='container'>
+    <h1>To Do List</h1>
+    <form action="">
+      <input
+        type="text"
+        v-model='name'
+        @input='updateName'
+      >
+      <button
+        class='btn btn-primary'
+        @click='onSubmit'
+      >
+        Click
+      </button>
+    </form>
+  </div>
+
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import { ref } from 'vue'
 
 export default {
-  name: 'App',
-  components: {
-    HelloWorld
+  setup() {
+    const name = ref('Chanho Won')
+    const onSubmit = () => {
+      alert(name.value)
+    }
+    const updateName = (e) => {
+      name.value = e.target.value
+    }
+
+
+  return {
+    name,
+    onSubmit,
+    updateName,
+  }
+
   }
 }
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+  .name {
+    color: red;
+  }
 </style>
